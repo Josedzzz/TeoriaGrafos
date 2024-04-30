@@ -43,12 +43,12 @@
 }
 
 .square {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #1f1f1f;
+    border: 0.5px solid #1f1f1f;
     margin: 0; /* Elimina cualquier margen */
     padding: 0; /* Elimina cualquier relleno */
     color: #f0f0f0;

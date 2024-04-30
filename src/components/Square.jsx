@@ -1,14 +1,14 @@
-export function Square({ index, updateBoard, children }) {
-    const handleClick = () => {
+export function Square({ i, j, updateBoard, children }) {
+  const handleClick = () => {
       const nodeName = prompt('Ingrese el nombre del nodo:');
       if (nodeName) {
-        updateBoard(index, nodeName);
+          updateBoard(i, j, nodeName);
       }
-    }
-  
-    return (
-        <div className={`square ${children ? 'filled' : ''}`} onClick={handleClick}>
+  };
+
+  return (
+      <div className={`square ${children ? 'filled' : ''}`} onClick={handleClick}>
           <span>{children}</span>
-        </div>
-    )
+      </div>
+  );
 }
