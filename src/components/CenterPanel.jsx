@@ -4,7 +4,14 @@ import { Square } from './Square'
 
 const BOARD_WIDTH = 34;
 const BOARD_HEIGHT = 28;
-const BOARD_ARRAY = Array(BOARD_WIDTH * BOARD_HEIGHT).fill(null);
+const BOARD_ARRAY = [];
+for (let i = 0; i < BOARD_HEIGHT; i++) {
+    const row = [];
+    for (let j = 0; j < BOARD_WIDTH; j++) {
+        row.push(null);
+    }
+    BOARD_ARRAY.push(row);
+}
 
 export function CenterPanel () {
     const [board, setBoard] = useState(BOARD_ARRAY);
@@ -14,19 +21,19 @@ export function CenterPanel () {
     }
 
     const updateBoard = (i, j, nodeName) => {
-        const index = i * BOARD_WIDTH + j;
+        //const index = i * BOARD_WIDTH + j;
         const newBoard = [...board];
-        newBoard[index] = nodeName;
+        newBoard[i][j] = nodeName;
         setBoard(newBoard);
-    };
+    }
 
     return (
         <div className='draw-template'>
             <div className='board' >
                 {Array.from({ length: BOARD_HEIGHT }, (_, i) => (
                     Array.from({ length: BOARD_WIDTH }, (_, j) => (
-                        <Square key={i * BOARD_WIDTH + j} i={i} j={j} updateBoard={updateBoard}>
-                            {board[i * BOARD_WIDTH + j]}
+                        <Square key={j} i={i} j={j} updateBoard={updateBoard}>
+                            {board[i][j]}
                         </Square>
                     ))
                 ))}
