@@ -19,11 +19,6 @@ export class Grafo {
         this.aristas.push(arista)
     }
 
-    encontrarRutaMasCorta(nodoInicio, nodoFin) {
-        // Implementa la lógica para encontrar la ruta más corta entre dos nodos
-        // Utiliza tu implementación de búsqueda de ruta más corta aquí
-    }
-
     existeNodo(nombre) {
         for (const nodo of this.nodos) {
             if (nodo.nombre === nombre) {
