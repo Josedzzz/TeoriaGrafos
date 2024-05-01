@@ -21,9 +21,9 @@ export function CenterPanel () {
     
 
     const resetBoard = () => {
-        setBoard(BOARD_ARRAY)
-        grafo.nodos.clear(); 
-        grafo.aristas = [];
+        setBoard(Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH).fill(null)));
+        grafo.nodos.clear() 
+        grafo.aristas = []
     }
 
 
