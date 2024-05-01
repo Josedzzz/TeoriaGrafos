@@ -75,6 +75,10 @@ export class Grafo {
         
         // Agregar el nodo de fin al camino
         camino.push({ i, j });
+
+        // Remover el primer y el último elemento del camino (los nodos de inicio y fin)
+        camino.shift();
+        camino.pop();
         
         return camino;
     }

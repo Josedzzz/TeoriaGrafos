@@ -61,4 +61,8 @@
 .square:hover {
     background-color: #1f1f1f;
 }
+
+.square.asterisk {
+   background-color: #f0f0f0;
+}
   
