@@ -62,7 +62,8 @@ export function CenterPanel () {
             }
         }
         return null;
-    };
+    }
+
     //Función para verificar si hay una arista en la posición i,j
     const isEdgePosition = (i, j) => {
         for (const arista of grafo.aristas) {
@@ -74,7 +75,7 @@ export function CenterPanel () {
             }
         }
         return false;
-    };
+    }
 
     const createEdge = () => {
         const node1Name = prompt('Ingrese el nombre del nodo 1:');
