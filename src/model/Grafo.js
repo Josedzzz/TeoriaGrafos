@@ -77,4 +77,35 @@ export class Grafo {
         
         return camino;
     }
+    
+    
+    //Función para obtener el grado de un nodo dado su nombre
+    gradoDelNodo(nombreNodo) {
+        const nodo = this.getNodeByName(nombreNodo);
+        if (!nodo) {
+            return 0; // Si el nodo no existe en el grafo, el grado es cero.
+        }
+
+        let grado = 0;
+        for (const arista of this.aristas) {
+            if (arista.nodoInicio.equals(nodo) || arista.nodoFin.equals(nodo)) {
+                grado++;
+            }
+        }
+        return grado;
+    }
+    /*
+    Función para obtener un diccionario con el siguiente orden: nombreNodo: grado nodo
+    Esto para obtener el grado de todos los vertices. 
+    */
+    obtenerGradosDeNodos() {
+        const grados = {};
+        for (const nodo of this.nodos) {
+            const nombreNodo = nodo.nombre;
+            const grado = this.gradoDelNodo(nombreNodo);
+            grados[nombreNodo] = grado;
+        }
+        return grados;
+    }
+
 }

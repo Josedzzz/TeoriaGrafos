@@ -28,20 +28,53 @@ export function CenterPanel () {
 
 
     const updateBoard = (i, j, nodeName) => {
-        // Agregar nodo al grafo
-        if (!grafo.existeNodo(nodeName)) {
-            grafo.addNodo(nodeName, i, j);        
+        // Verificar si ya hay un nodo en la posición i, j
+        const existingNode = getNodeAtPosition(i, j);
+        if (existingNode) {
+            alert('Ya existe un nodo en esta posición');
+            return;
+        }
+          // Verificar si la posición i, j está ocupada por una arista
+        if (isEdgePosition(i, j)) {
+            alert('No se puede colocar un nodo en medio de una arista');
+            return;
+        }
 
+        // Agregar nodo al grafo si no existe previamente
+        if (!grafo.existeNodo(nodeName)) {
+            grafo.addNodo(nodeName, i, j);
+    
             const newBoard = [...board];
             newBoard[i][j] = nodeName;
             setBoard(newBoard);
             // Agregar nodo al grafo
             grafo.addNodo(nodeName, i, j);
         } else {
-            alert('El nombre del nodo ya existe')
+            alert('El nombre del nodo ya existe');
         }
-    }
-
+    };
+    
+    // Función para verificar si hay un nodo en la posición i, j
+    const getNodeAtPosition = (i, j) => {
+        for (const nodo of grafo.nodos) {
+            if (nodo.posicionI === i && nodo.posicionJ === j) {
+                return nodo;
+            }
+        }
+        return null;
+    };
+    //Función para verificar si hay una arista en la posición i,j
+    const isEdgePosition = (i, j) => {
+        for (const arista of grafo.aristas) {
+            const { nodoInicio, nodoFin, camino } = arista;
+            for (const { i: ai, j: aj } of camino) {
+                if (ai === i && aj === j) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
 
     const createEdge = () => {
         const node1Name = prompt('Ingrese el nombre del nodo 1:');
@@ -64,6 +97,7 @@ export function CenterPanel () {
             alert('Verifique que el nombre del nodo exista')
         }
     }
+    
 
     return (
         <div className='draw-template'>
