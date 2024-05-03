@@ -7,8 +7,11 @@ import { useState } from 'react';
 import { Grafo } from './model/Grafo';
 
 function App() {
-  const [grafo, setGrafo] = useState(new Grafo());
-  console.log(grafo.nodos)
+  const [grafo, setGrafo] = useState(new Grafo())
+
+  const actualizarGrafo = nuevoGrafo => {
+    setGrafo(nuevoGrafo);
+  };
 
   return (
     <div className='content'>
@@ -32,7 +35,7 @@ function App() {
         </div>
 
         <div className='center-panel'>
-          <CenterPanel grafo={grafo} setGrafo={setGrafo} />
+          <CenterPanel grafo={grafo} actualizarGrafo={actualizarGrafo} />
         </div>
 
         <div className='right-panel'>

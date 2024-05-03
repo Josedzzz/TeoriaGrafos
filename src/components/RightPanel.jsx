@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 export function RightPanel ({ grafo }) {
     return (
@@ -6,7 +6,7 @@ export function RightPanel ({ grafo }) {
     )
 }
 
-// Definir PropTypes para leftPanel
+// Definir PropTypes para rightPanel
 RightPanel.propTypes = {
     grafo: PropTypes.object.isRequired, // grafo debe ser un objeto requerido
-};
+}

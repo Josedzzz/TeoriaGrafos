@@ -108,4 +108,21 @@ export class Grafo {
         return grados;
     }
 
+    obtenerNombresNodos() {
+        const nombresNodos = [];
+        for (const nodo of this.nodos) {
+            nombresNodos.push(nodo.nombre);
+        }
+        return nombresNodos;
+    }
+
+    obtenerNombresAristas() {
+        const nombresAristas = [];
+        for (const arista of this.aristas) {
+            const nombreArista = `${arista.nodoInicio.nombre}-${arista.nodoFin.nombre}`;
+            nombresAristas.push(nombreArista);
+        }
+        return nombresAristas;
+    }
+
 }
