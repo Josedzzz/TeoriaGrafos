@@ -99,11 +99,11 @@ export function CenterPanel({ grafo, actualizarGrafo }) {
                 <button onClick={createEdge}>Ingresar Arista</button>
             </div>
         </div>
-    );
+    )
 }
 
 // Definir PropTypes para CenterPanel
 CenterPanel.propTypes = {
     grafo: PropTypes.object.isRequired, // grafo debe ser un objeto requerido
     actualizarGrafo: PropTypes.func.isRequired // setGrafo debe ser una función requerida
-};
+}

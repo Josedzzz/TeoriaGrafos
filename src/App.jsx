@@ -8,10 +8,13 @@ import { Grafo } from './model/Grafo';
 
 function App() {
   const [grafo, setGrafo] = useState(new Grafo())
+  const [leftPanelKey, setLeftPanelKey] = useState(0)
 
   const actualizarGrafo = nuevoGrafo => {
     setGrafo(nuevoGrafo);
-  };
+    //Lo uso para forzar el renderizado de la información de la izquierda
+    setLeftPanelKey(prevKey => prevKey + 1)
+  }
 
   return (
     <div className='content'>
@@ -31,7 +34,7 @@ function App() {
 
       <main>
         <div className='left-panel'>
-          <LeftPanel grafo={grafo} />
+          <LeftPanel key={leftPanelKey} grafo={grafo} />
         </div>
 
         <div className='center-panel'>
@@ -47,4 +50,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

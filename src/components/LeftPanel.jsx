@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types'
 
 export function LeftPanel ({ grafo }) {
-    console.log(grafo.nodos)
-    console.log(grafo.aristas)
-
     // Obtener los nombres de los nodos del grafo
     const nombresNodos = grafo.obtenerNombresNodos()
-    
+
     // Obtener los nombres de las aristas del grafo
     const nombresAristas = grafo.obtenerNombresAristas()
-    console.log("Nombres de nodos:", nombresNodos)
-    console.log("Nombres de aristas:", nombresAristas)
 
     return (
         <div>
