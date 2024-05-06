@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types'
+import './LeftPanel.css'
+import { useState } from 'react'
 
 export function LeftPanel ({ grafo }) {
     // Obtener los nombres de los nodos del grafo
@@ -7,12 +9,35 @@ export function LeftPanel ({ grafo }) {
     // Obtener los nombres de las aristas del grafo
     const nombresAristas = grafo.obtenerNombresAristas()
 
+    // Estado para mantener el nodo seleccionado y su información
+    const [nodoSeleccionado, setNodoSeleccionado] = useState(null)
+
+    // Función para manejar el clic en un nodo
+    const handleClick = (nombre) => {
+        if (nodoSeleccionado === nombre) {
+            // Si ya está seleccionado, lo deseleccionamos
+            setNodoSeleccionado(null)
+        } else {
+            // Si no está seleccionado, lo seleccionamos
+            setNodoSeleccionado(nombre)
+        }
+    }
+
     return (
-        <div>
-            <h3>Nombres de Nodos:</h3>
+        <div className='left-content'>
+            <h3 className='title-nodes'>Nombres de Nodos:</h3>
             <ul>
                 {nombresNodos.map((nombre) => (
-                    <li key={nombre}>{nombre}</li>
+                    <li key={nombre}>
+                        {nombre}
+                        <button onClick={() => handleClick(nombre)}>Mostrar información</button>
+                        {nodoSeleccionado === nombre && (
+                            <div className="nodo-info">
+                                {/* Aquí debes poner la información específica del nodo */}
+                                Aquí va la infor adicional jeje
+                            </div>
+                        )}
+                    </li>
                 ))}
             </ul>
             <h3>Nombres de Aristas:</h3>
