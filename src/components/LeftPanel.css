@@ -6,3 +6,27 @@
 .title-nodes {
     color: #f0f0f0;
 }
+
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.item-list {
+    margin-bottom: 10px; 
+}
+
+.button-list {
+    color: #2E5EAA;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f0f0f0; 
+    border: 1px solid #2E5EAA; 
+    cursor: pointer; 
+    width: 50%; 
+    border-radius: 15px;
+}
+
+.nodo-info {
+    margin-top: 5px; 
+}

@@ -26,15 +26,16 @@ export function LeftPanel ({ grafo }) {
     return (
         <div className='left-content'>
             <h3 className='title-nodes'>Nombres de Nodos:</h3>
-            <ul>
+            <ul className='list'>
                 {nombresNodos.map((nombre) => (
-                    <li key={nombre}>
-                        {nombre}
-                        <button onClick={() => handleClick(nombre)}>Mostrar información</button>
+                    <li className='item-list' key={nombre}>
+                        <button className='button-list' onClick={() => handleClick(nombre)}>
+                            {nombre}
+                        </button>
                         {nodoSeleccionado === nombre && (
                             <div className="nodo-info">
                                 {/* Aquí debes poner la información específica del nodo */}
-                                Aquí va la infor adicional jeje
+                                Aquí va la información adicional jeje
                             </div>
                         )}
                     </li>
