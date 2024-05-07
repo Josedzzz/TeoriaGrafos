@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { Square } from './Square'
 import { Grafo } from '../model/Grafo'
 
-const BOARD_WIDTH = 34
-const BOARD_HEIGHT = 28
+const BOARD_WIDTH = 104
+const BOARD_HEIGHT = 84
 const BOARD_ARRAY = Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH).fill(null))
 
 export function CenterPanel({ grafo, actualizarGrafo }) {
@@ -36,6 +36,14 @@ export function CenterPanel({ grafo, actualizarGrafo }) {
             actualizarGrafo(grafo)
             const newBoard = [...board]
             newBoard[i][j] = nodeName
+            newBoard[i-1][j-1] = '-'
+            newBoard[i-1][j] = '-'
+            newBoard[i-1][j+1] = '-'
+            newBoard[i][j-1] = '-'
+            newBoard[i][j+1] = '-'
+            newBoard[i+1][j-1] = '-'
+            newBoard[i+1][j] = '-'
+            newBoard[i+1][j+1] = '-'
             setBoard(newBoard)
         } else {
             alert('El nombre del nodo ya existe')

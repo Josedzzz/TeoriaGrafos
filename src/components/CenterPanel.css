@@ -43,19 +43,21 @@
 }
 
 .square {
-    width: 16px;
-    height: 16px;
+    width: 4px;
+    height: 4px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     border: 0.5px solid #1f1f1f;
     margin: 0; /* Elimina cualquier margen */
     padding: 0; /* Elimina cualquier relleno */
     color: #f0f0f0;
+    font-weight: bold;
 }
 
 .square.filled {
     background-color: #2E5EAA; /* Cambia el color de fondo cuando está lleno */
+    font-size: 15px;
 }
   
 .square:hover {
@@ -64,5 +66,12 @@
 
 .square.asterisk {
    background-color: #f0f0f0;
+   font-size: 1px;
 }
+
+.square.line {
+    background-color: #2E5EAA;
+    font-size: 1px;
+}
+
   
