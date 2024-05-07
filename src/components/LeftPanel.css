@@ -17,16 +17,28 @@
 }
 
 .button-list {
-    color: #2E5EAA;
+    color: #f0f0f0;
     font-size: 16px;
     font-weight: bold;
-    background-color: #f0f0f0; 
-    border: 1px solid #2E5EAA; 
+    background-color: #1f1f1f; 
+    border: 2px solid #f0f0f0; 
     cursor: pointer; 
-    width: 50%; 
-    border-radius: 15px;
+    width: 25%; 
+    border-radius: 0px 10px 10px 0px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.button-list:hover {
+    background-color: #2E5EAA; 
 }
 
 .nodo-info {
-    margin-top: 5px; 
+    background-color: #2E5EAA;
+    border-radius: 0px 10px 10px 0px;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: bold; 
+    font-size: 14px;
+    color: #f0f0f0;
 }

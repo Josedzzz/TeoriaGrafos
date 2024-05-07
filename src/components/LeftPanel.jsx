@@ -25,7 +25,7 @@ export function LeftPanel ({ grafo }) {
 
     return (
         <div className='left-content'>
-            <h3 className='title-nodes'>Nombres de Nodos:</h3>
+            <h3 className='title-nodes'>Información de los nodos:</h3>
             <ul className='list'>
                 {nombresNodos.map((nombre) => (
                     <li className='item-list' key={nombre}>
@@ -35,7 +35,7 @@ export function LeftPanel ({ grafo }) {
                         {nodoSeleccionado === nombre && (
                             <div className="nodo-info">
                                 {/* Aquí debes poner la información específica del nodo */}
-                                Aquí va la información adicional jeje
+                                El grado del nodo es: {grafo.getGradoNodo(nombre)}
                             </div>
                         )}
                     </li>

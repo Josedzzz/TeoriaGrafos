@@ -80,7 +80,7 @@ export class Grafo {
     
     
     //Función para obtener el grado de un nodo dado su nombre
-    gradoDelNodo(nombreNodo) {
+    getGradoNodo(nombreNodo) {
         const nodo = this.getNodeByName(nombreNodo);
         if (!nodo) {
             return 0; // Si el nodo no existe en el grafo, el grado es cero.
