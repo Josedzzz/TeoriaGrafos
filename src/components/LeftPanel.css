@@ -7,6 +7,10 @@
     color: #f0f0f0;
 }
 
+.title-edges {
+    color: #f0f0f0;
+}
+
 .list {
     list-style: none;
     padding: 0;
@@ -41,4 +45,15 @@
     font-weight: bold; 
     font-size: 14px;
     color: #f0f0f0;
+}
+
+.edge-info {
+    background-color: #2E5EAA;
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-weight: bold; 
+    font-size: 14px;
+    color: #f0f0f0;
+    width: 50%;
 }

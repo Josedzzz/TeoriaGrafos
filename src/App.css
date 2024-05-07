@@ -87,6 +87,22 @@ main {
     background-color: #1F1F1F;
     border-radius: 12px;
     margin: 0px 12px;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+    max-height: 80vh;; /* Altura máxima para el contenido */
+}
+
+.left-panel::-webkit-scrollbar, .right-panel::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}   
+
+.left-panel::-webkit-scrollbar-thumb, .right-panel::-webkit-scrollbar-thumb {
+    background-color: #2E5EAA; /* Color del botón del scrollbar */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.left-panel::-webkit-scrollbar-track, .right-panel::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #f0f0f0; /* Color de fondo del scrollbar */
 }
   
 .center-panel {

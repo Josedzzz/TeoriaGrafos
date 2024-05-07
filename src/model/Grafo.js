@@ -78,7 +78,6 @@ export class Grafo {
         return camino;
     }
     
-    
     //Función para obtener el grado de un nodo dado su nombre
     getGradoNodo(nombreNodo) {
         const nodo = this.getNodeByName(nombreNodo);
@@ -94,6 +93,21 @@ export class Grafo {
         }
         return grado;
     }
+
+    getVecinosNodo(nombreNodo) {
+        const nodo = this.getNodeByName(nombreNodo)
+        if (!nodo) return 'Error'
+        let vecinos = '{ '
+        for (const arista of this.aristas) {
+            if (arista.nodoInicio.equals(nodo)) {
+                vecinos = vecinos + ' ' + arista.nodoFin.nombre
+            } else if (arista.nodoFin.equals(nodo)) {
+                vecinos = vecinos + ' ' + arista.nodoInicio.nombre
+            }
+        }
+        return vecinos + ' }'
+    }
+
     /*
     Función para obtener un diccionario con el siguiente orden: nombreNodo: grado nodo
     Esto para obtener el grado de todos los vertices. 

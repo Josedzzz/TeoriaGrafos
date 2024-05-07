@@ -25,7 +25,7 @@ export function LeftPanel ({ grafo }) {
 
     return (
         <div className='left-content'>
-            <h3 className='title-nodes'>Información de los nodos:</h3>
+            <h3 className='title-nodes'>Nodos del grafo</h3>
             <ul className='list'>
                 {nombresNodos.map((nombre) => (
                     <li className='item-list' key={nombre}>
@@ -34,17 +34,22 @@ export function LeftPanel ({ grafo }) {
                         </button>
                         {nodoSeleccionado === nombre && (
                             <div className="nodo-info">
-                                {/* Aquí debes poner la información específica del nodo */}
-                                El grado del nodo es: {grafo.getGradoNodo(nombre)}
+                                Grado del nodo: {grafo.getGradoNodo(nombre)}
+                                <br />
+                                Los vecinos son: {grafo.getVecinosNodo(nombre)}
                             </div>
                         )}
                     </li>
                 ))}
             </ul>
-            <h3>Nombres de Aristas:</h3>
-            <ul>
+            <h3 className='title-edges'>Aristas del grafo</h3>
+            <ul className='list'>
                 {nombresAristas.map((nombre) => (
-                    <li key={nombre}>{nombre}</li>
+                    <li className='item-list' key={nombre}>
+                        <div className='edge-info'>
+                            {nombre}
+                        </div>
+                    </li>
                 ))}
             </ul>
         </div>
