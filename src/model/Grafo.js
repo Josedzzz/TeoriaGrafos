@@ -157,7 +157,26 @@ export class Grafo {
         }
         return visitados.size === nodos.length
     }
-    
+
+    //Obtiene el numero de nodos del grafo
+    getNumNodos() {
+        return this.nodos.size
+    }
+
+    //Obtiene el numero de aristas del grafo
+    getNumEdges() {
+        return this.aristas.length
+    }
+
+    //Obtiene el ciclo euleriano del grafo si es que existe
+    getCicloEuleriano() {
+        return []
+    }
+
+    //Obtiene el ciclo hamiltoniano del grafo si es que existe
+    getCicloHamiltoniano() {
+        return []
+    }
 
     /*
     Función para obtener un diccionario con el siguiente orden: nombreNodo: grado nodo

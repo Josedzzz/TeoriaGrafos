@@ -70,6 +70,34 @@ export function RightPanel ({ grafo }) {
             return 'No es conexo'
         }
     }
+
+    //Renderiza el numero de nodos del grafo
+    const renderNumNodos = () => {
+        const numNodos = grafo.getNumNodos()
+        return 'El grafo tiene ' + numNodos + ' nodos'
+    }
+
+    //Renderiza el numero de aristas del grafo
+    const renderNumEdges = () => {
+        const numEdges = grafo.getNumEdges()
+        return 'El grafo tiene ' + numEdges + ' aristas'
+    }
+
+    const renderCicloEuleriano = () => {
+        const camino = grafo.getCicloEuleriano()
+        if (camino.length === 0) {
+            return 'No se puede hacer por el momento un ciclo euleriano al grafo'
+        }
+        return camino 
+    }
+
+    const renderCicloHamiltoniano= () => {
+        const camino = grafo.getCicloHamiltoniano()
+        if (camino.length === 0) {
+            return 'No se puede hacer por el momento un ciclo hamiltoniano al grafo'
+        }
+        return camino 
+    }
  
     return (
         <div className='right-content'>
@@ -82,7 +110,9 @@ export function RightPanel ({ grafo }) {
                     </button>
                     {generalidadGrafoVisible === 'Generalidad grafo' && (
                         <div className='info-right'>
-                            Otro ejemplo de contenido
+                            {renderNumNodos()}
+                            <br />
+                            {renderNumEdges()}
                         </div>
                     )}
                 </li>
@@ -108,7 +138,7 @@ export function RightPanel ({ grafo }) {
                     </button>
                     {cicloEulerianoVisible === 'Ciclo euleriano' && (
                         <div className='info-right'>
-                            Ejemplo de contenido para el ciclo eulerinao
+                            {renderCicloEuleriano()}
                         </div>
                     )}
                 </li>
@@ -119,7 +149,7 @@ export function RightPanel ({ grafo }) {
                     </button>
                     {cicloHamiltonianoVisible === 'Ciclo hamiltoniano' && (
                         <div className='info-right'>
-                            Ejemplo de contenido para el ciclo hamiltoniano
+                            {renderCicloHamiltoniano()}
                         </div>
                     )}
                 </li>
