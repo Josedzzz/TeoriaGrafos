@@ -44,6 +44,33 @@ export function RightPanel ({ grafo }) {
         }
     }
 
+    //Renderiza contenido dependiendo de si es multigrafo o no
+    const renderIsMultigrafo = () => {
+        if (grafo.isMultigrafo()) {
+            return 'Es multigrafo'
+        } else {
+            return 'No es multigrafo'
+        }
+    }
+
+    //Renderiza contenido dependiendo de si es regular o no
+    const renderIsRegular = () => {
+        if (grafo.isRegular()) {
+            return 'Es regular'
+        } else {
+            return 'No es regular'
+        }
+    }
+
+    //Renderiza contenido dependiendo de si es conexo o no
+    const renderIsConexo = () => {
+        if (grafo.isConexo()) {
+            return 'Es conexo'
+        } else {
+            return 'No es conexo'
+        }
+    }
+ 
     return (
         <div className='right-content'>
             <h3 className='title'>Información del grafo</h3>
@@ -66,7 +93,11 @@ export function RightPanel ({ grafo }) {
                     </button>
                     {tipoGrafoVisible === 'Tipo grafo' && (
                         <div className='info-right'>
-                            Ejemplo de contenido
+                            {renderIsMultigrafo()}
+                            <br />
+                            {renderIsRegular()}
+                            <br />
+                            {renderIsConexo()}
                         </div>
                     )}
                 </li>

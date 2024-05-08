@@ -78,7 +78,7 @@ export class Grafo {
         return camino;
     }
     
-    //Función para obtener el grado de un nodo dado su nombre
+    //Funcion para obtener el grado de un nodo dado su nombre
     getGradoNodo(nombreNodo) {
         const nodo = this.getNodeByName(nombreNodo);
         if (!nodo) {
@@ -94,6 +94,7 @@ export class Grafo {
         return grado;
     }
 
+    //Funcion para obtener los vecinos de un nodo dado su nombre
     getVecinosNodo(nombreNodo) {
         const nodo = this.getNodeByName(nombreNodo)
         if (!nodo) return 'Error'
@@ -108,6 +109,56 @@ export class Grafo {
         return vecinos + ' }'
     }
 
+    //Funcion para saber si el grafo es un multigrafo
+    isMultigrafo() {
+        const aristasUnicas = new Set()
+        for (const arista of this.aristas) {
+            const key = `${arista.nodoInicio.nombre}-${arista.nodoFin.nombre}`
+            const key1 = `${arista.nodoFin.nombre}-${arista.nodoInicio.nombre}`
+            if (aristasUnicas.has(key) || aristasUnicas.has(key1)) {
+                return true
+            }
+            aristasUnicas.add(key)
+            aristasUnicas.add(key1)
+        }
+        return false
+    }
+
+    //Funcion para saber si el grafo es regular
+    isRegular() {
+        const grados = this.obtenerGradosDeNodos()
+        const primerGrado = Object.values(grados)[0]
+        for (const grado of Object.values(grados)) {
+            if (grado !== primerGrado) {
+                return false;
+            }
+        }
+        return true
+    }
+
+    //Funcion para saber si el grafo es conexo
+    isConexo() {
+        const nodos = Array.from(this.nodos)
+        const visitados = new Set()
+        const pila = [nodos[0]] // Comenzamos desde el primer nodo
+    
+        while (pila.length > 0) {
+            const nodoActual = pila.pop();
+            visitados.add(nodoActual);
+    
+            for (const arista of this.aristas) {
+                if (arista.nodoInicio === nodoActual && !visitados.has(arista.nodoFin)) {
+                    pila.push(arista.nodoFin)
+                }
+                if (arista.nodoFin === nodoActual && !visitados.has(arista.nodoInicio)) {
+                    pila.push(arista.nodoInicio)
+                }
+            }
+        }
+        return visitados.size === nodos.length
+    }
+    
+
     /*
     Función para obtener un diccionario con el siguiente orden: nombreNodo: grado nodo
     Esto para obtener el grado de todos los vertices. 
@@ -116,7 +167,7 @@ export class Grafo {
         const grados = {};
         for (const nodo of this.nodos) {
             const nombreNodo = nodo.nombre;
-            const grado = this.gradoDelNodo(nombreNodo);
+            const grado = this.getGradoNodo(nombreNodo);
             grados[nombreNodo] = grado;
         }
         return grados;
