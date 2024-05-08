@@ -27,6 +27,18 @@ export class Grafo {
         }
         return false;
     }
+    existeArista(nodoInicio, nodoFin) {
+        // Iterar sobre las aristas para buscar una que conecte nodoInicio con nodoFin
+        for (const arista of this.aristas) {
+            if (
+                (arista.nodoInicio === nodoInicio && arista.nodoFin === nodoFin) ||
+                (arista.nodoInicio === nodoFin && arista.nodoFin === nodoInicio)
+            ) {
+                return true; // Se encontró una arista que conecta los nodos dados
+            }
+        }
+        return false; // No se encontró ninguna arista entre los nodos dados
+    }
 
     getNodeByName(nombreNodo) {
         for (const nodo of this.nodos) {
@@ -169,20 +181,139 @@ export class Grafo {
     }
 
     //Obtiene el ciclo euleriano del grafo si es que existe
-    getCicloEuleriano() {
-        return []
+    isEuleriano() {
+        // El grafo debe ser conexo y todos los nodos deben tener grado par
+        return this.isConexo() && !this.isMultigrafo() && this.areAllNodesEvenDegree();
     }
 
-    //Obtiene el ciclo hamiltoniano del grafo si es que existe
-    getCicloHamiltoniano() {
-        return []
+    // Función para verificar si todos los nodos tienen grado par
+    areAllNodesEvenDegree() {
+        for (const nodo of this.nodos) {
+            const grado = this.getGradoNodo(nodo.nombre);
+            if (grado % 2 !== 0) {
+                return false;
+            }
+        }
+        return true;
     }
+
+    // Función para obtener un ciclo euleriano utilizando Fleury's Algorithm
+    getCicloEuleriano() {
+        if (!this.isEuleriano()) {
+            return []; // No existe un ciclo euleriano
+        }
+
+        const aristasNoVisitadas = [...this.aristas]; // Copia de todas las aristas
+        const ciclo = [];
+        let inicio = this.nodos.values().next().value; // Empezar en un nodo cualquiera
+
+        const dfs = (nodo) => {
+            for (let i = 0; i < aristasNoVisitadas.length; i++) {
+                const arista = aristasNoVisitadas[i];
+                if (arista.nodoInicio.equals(nodo) || arista.nodoFin.equals(nodo)) {
+                    const vecino = arista.nodoInicio.equals(nodo) ? arista.nodoFin : arista.nodoInicio;
+                    aristasNoVisitadas.splice(i, 1); // Eliminar arista de la lista
+                    dfs(vecino);
+                }
+            }
+            ciclo.push(nodo);
+        };
+
+        dfs(inicio);
+
+        // Revertir ciclo para obtener el orden correcto
+        ciclo.reverse();
+
+        return ciclo;
+    }
+
+    getCicloHamiltoniano() {
+        // Verificar si el grafo es Hamiltoniano
+        if (!this.isHamiltoniano()) {
+            return []; // No existe un ciclo Hamiltoniano en el grafo
+        }
+    
+        const nodos = Array.from(this.nodos);
+        const inicio = nodos[0]; // Empezar desde un nodo cualquiera
+    
+        // Función auxiliar para realizar DFS y encontrar un ciclo Hamiltoniano
+        const dfs = (actual, visitados, camino) => {
+            visitados.add(actual);
+    
+            // Agregar nodo actual al camino
+            camino.push(actual);
+    
+            // Si se visitaron todos los nodos y hay una arista de regreso al nodo inicial, retornar el camino como ciclo Hamiltoniano
+            if (camino.length === nodos.length && this.existeArista(actual, inicio)) {
+                camino.push(inicio);
+                return camino.map(nodo => nodo.nombre); // Devolver nombres de nodos en el ciclo Hamiltoniano
+            }
+    
+            // Recorrer todos los vecinos del nodo actual
+            for (const arista of this.aristas) {
+                if (arista.nodoInicio.equals(actual) && !visitados.has(arista.nodoFin)) {
+                    const result = dfs(arista.nodoFin, new Set(visitados), [...camino]);
+                    if (result.length > 0) {
+                        return result;
+                    }
+                } else if (arista.nodoFin.equals(actual) && !visitados.has(arista.nodoInicio)) {
+                    const result = dfs(arista.nodoInicio, new Set(visitados), [...camino]);
+                    if (result.length > 0) {
+                        return result;
+                    }
+                }
+            }
+    
+            return []; // No se encontró un ciclo Hamiltoniano desde este nodo
+        };
+    
+        // Iniciar la búsqueda DFS desde el nodo inicial
+        const caminoHamiltoniano = dfs(inicio, new Set(), []);
+    
+        return caminoHamiltoniano;
+    }
+    
+    // Función auxiliar para verificar si el grafo es Hamiltoniano
+    isHamiltoniano() {
+        // El grafo debe ser conexo y cumplir con la condición de Dirac o Ore para ser Hamiltoniano
+        return this.isConexo() && this.satisfaceCondicionHamiltoniana();
+    }
+    
+    // Función auxiliar para verificar la condición de Dirac o Ore para ser Hamiltoniano
+    satisfaceCondicionHamiltoniana() {
+        const numNodos = this.getNumNodos();
+    
+        // Condición de Dirac: Cada vértice debe tener grado al menos n/2
+        // Condición de Ore: Para cada par de vértices no adyacentes, su suma de grados debe ser al menos n
+        for (const nodo of this.nodos) {
+            const grado = this.getGradoNodo(nodo.nombre);
+            if (grado < numNodos / 2) {
+                return false; // No satisface la condición de Dirac
+            }
+        }
+    
+        // Verificar condición de Ore (comparar pares de vértices no adyacentes)
+        for (const nodo1 of this.nodos) {
+            for (const nodo2 of this.nodos) {
+                if (!this.existeArista(nodo1, nodo2)) {
+                    const gradoNodo1 = this.getGradoNodo(nodo1.nombre);
+                    const gradoNodo2 = this.getGradoNodo(nodo2.nombre);
+                    if (gradoNodo1 + gradoNodo2 < numNodos) {
+                        return false; // No satisface la condición de Ore
+                    }
+                }
+            }
+        }
+    
+        return true; // El grafo satisface la condición de Dirac y Ore para ser Hamiltoniano
+    }
+    
 
     /*
     Función para obtener un diccionario con el siguiente orden: nombreNodo: grado nodo
     Esto para obtener el grado de todos los vertices. 
     */
-    obtenerGradosDeNodos() {
+    obtenerGradosDeNodos() {    
         const grados = {};
         for (const nodo of this.nodos) {
             const nombreNodo = nodo.nombre;

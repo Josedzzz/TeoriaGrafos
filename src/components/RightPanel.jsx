@@ -84,20 +84,37 @@ export function RightPanel ({ grafo }) {
     }
 
     const renderCicloEuleriano = () => {
-        const camino = grafo.getCicloEuleriano()
+        const camino = grafo.getCicloEuleriano();
+    
         if (camino.length === 0) {
-            return 'No se puede hacer por el momento un ciclo euleriano al grafo'
+            return 'No se puede hacer por el momento un ciclo euleriano al grafo';
         }
-        return camino 
-    }
-
-    const renderCicloHamiltoniano= () => {
-        const camino = grafo.getCicloHamiltoniano()
+    
+        // Procesar el resultado del ciclo euleriano
+        const nodosEnCamino = camino.map(({ nombre }) => nombre).join(' -> ');
+    
+        return <div>{nodosEnCamino}</div>;
+    };
+    
+    const renderCicloHamiltoniano = () => {
+        if (!grafo) {
+            return 'Grafo no disponible'; // Manejar el caso donde grafo no está definido
+        }
+    
+        const camino = grafo.getCicloHamiltoniano();
+        
         if (camino.length === 0) {
-            return 'No se puede hacer por el momento un ciclo hamiltoniano al grafo'
+            return 'No se puede encontrar un ciclo Hamiltoniano en el grafo.';
         }
-        return camino 
-    }
+    
+        // Extraer solo los nombres de los nodos del ciclo Hamiltoniano
+        const nombresNodos = camino.join(' -> ');
+        
+        return (
+            <div>{nombresNodos}</div>
+        ); 
+    };
+    
  
     return (
         <div className='right-content'>
