@@ -5,6 +5,7 @@ import { CenterPanel } from './components/CenterPanel';
 import { RightPanel } from './components/RightPanel';
 import { useState } from 'react';
 import { Grafo } from './model/Grafo';
+import { Glosario } from './components/Glosario';
 
 function App() {
   const [grafo, setGrafo] = useState(new Grafo())
@@ -52,14 +53,7 @@ function App() {
     )
   }
 
-  const renderGlosario = () => {
-    return (
-      <main>
-        <h3>Prueba de renderizado del glosario</h3>
-      </main>
-    )
-  }
-
+  
   return (
     <div className='content'>
 
@@ -79,7 +73,7 @@ function App() {
 
       {mainContent === 'grafo' && renderContentGrafo()}
       {mainContent === 'arbol' && renderContentArbol()}
-      {mainContent === 'glosario' && renderGlosario()}
+      {mainContent === 'glosario' && <Glosario />}
 
     </div>
   )
