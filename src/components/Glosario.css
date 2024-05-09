@@ -1,0 +1,70 @@
+.box-glosario {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    max-width: 470px;
+    margin: 0 auto;
+}
+
+.title-glosario {
+    padding: 5px 20px;
+    background-color: #2E5EAA;
+    border-radius: 10px;
+}
+
+.title-glosario h3 {
+    margin: 0;
+    color: #f0f0f0;
+    font-size: 17px;
+}
+
+.content-glosario {
+    margin-right: auto;
+}
+
+.concept-grafo {
+
+}
+
+.concept-grafo h3 {
+    color: #2E5EAA;
+    font-weight: bold;
+}
+
+.concept-grafo p {
+    color: #f0f0f0;
+    text-align: justify;
+    letter-spacing: 0.8px;
+    line-height: 22px;
+}
+
+.concept-grafo ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.concept-grafo li {
+    color: #f0f0f0;
+    text-align: justify;
+    letter-spacing: 0.8px;
+    line-height: 22px;
+    margin-bottom: 10px;
+}
+
+.concept-grafo li::before {
+    content: '•'; 
+    color: #2E5EAA; 
+    display: inline-block;
+    width: 1.5em; 
+}
+
+.concept-grafo .highlighted {
+    color: #2E5EAA; 
+    font-weight: bold; 
+}
+
+.tipos-grafo {
+    
+}
