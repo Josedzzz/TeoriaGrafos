@@ -95,24 +95,23 @@ export function RightPanel ({ grafo }) {
     
         return <div>{nodosEnCamino}</div>;
     };
-    
+
     const renderCicloHamiltoniano = () => {
-        if (!grafo) {
-            return 'Grafo no disponible'; // Manejar el caso donde grafo no está definido
+        if (!grafo || !grafo.getCicloHamiltoniano) {
+            return 'No se puede calcular un ciclo Hamiltoniano para este grafo.';
         }
-    
+
         const camino = grafo.getCicloHamiltoniano();
-        
         if (camino.length === 0) {
-            return 'No se puede encontrar un ciclo Hamiltoniano en el grafo.';
+            return 'No se encontró un ciclo Hamiltoniano en el grafo.';
         }
-    
+
         // Extraer solo los nombres de los nodos del ciclo Hamiltoniano
-        const nombresNodos = camino.join(' -> ');
-        
+        const nombresNodos = camino.map(nodo => nodo.nombre).join(' -> ');
+
         return (
             <div>{nombresNodos}</div>
-        ); 
+        );
     };
     
  
