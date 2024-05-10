@@ -58,6 +58,7 @@
 .square.filled {
     background-color: #2E5EAA; /* Cambia el color de fondo cuando está lleno */
     font-size: 15px;
+    border: 0.5px solid #2E5EAA;
 }
   
 .square:hover {
