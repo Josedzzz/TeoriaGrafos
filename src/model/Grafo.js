@@ -108,17 +108,18 @@ export class Grafo {
 
     //Funcion para obtener los vecinos de un nodo dado su nombre
     getVecinosNodo(nombreNodo) {
-        const nodo = this.getNodeByName(nombreNodo)
-        if (!nodo) return 'Error'
-        let vecinos = '{ '
+        const nodo = this.getNodeByName(nombreNodo);
+        if (!nodo) return new Set()
+    
+        let vecinos = new Set();
         for (const arista of this.aristas) {
             if (arista.nodoInicio.equals(nodo)) {
-                vecinos = vecinos + ' ' + arista.nodoFin.nombre
+                vecinos.add(arista.nodoFin.nombre)
             } else if (arista.nodoFin.equals(nodo)) {
-                vecinos = vecinos + ' ' + arista.nodoInicio.nombre
+                vecinos.add(arista.nodoInicio.nombre)
             }
         }
-        return vecinos + ' }'
+        return vecinos
     }
 
     //Funcion para saber si el grafo es un multigrafo

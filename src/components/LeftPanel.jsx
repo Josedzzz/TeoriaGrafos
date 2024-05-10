@@ -23,6 +23,12 @@ export function LeftPanel ({ grafo }) {
         }
     }
 
+    const renderVecinosNodos = (nombre) => {
+        const vecinos = grafo.getVecinosNodo(nombre)
+        if (vecinos.size === 0) return 'El nodo no tiene vecinos'
+        return  'Los vecinos son: ' + [...vecinos].join(', ')
+    }
+
     return (
         <div className='left-content'>
             <h3 className='title-nodes'>Nodos del grafo</h3>
@@ -36,7 +42,7 @@ export function LeftPanel ({ grafo }) {
                             <div className="nodo-info">
                                 Grado del nodo: {grafo.getGradoNodo(nombre)}
                                 <br />
-                                Los vecinos son: {grafo.getVecinosNodo(nombre)}
+                                {renderVecinosNodos(nombre)}
                             </div>
                         )}
                     </li>
