@@ -6,6 +6,22 @@
     width: 90%;
     max-width: 470px;
     margin: 0 auto;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+    max-height: 80vh;; /* Altura máxima para el contenido */
+}
+
+.box-glosario::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}   
+
+.box-glosario::-webkit-scrollbar-thumb {
+    background-color: #2E5EAA; /* Color del botón del scrollbar */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.box-glosario::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #f0f0f0; /* Color de fondo del scrollbar */
 }
 
 .title-glosario {
@@ -25,7 +41,8 @@
 }
 
 .concept-grafo {
-
+    margin-top: 30px;
+    margin-right: 8px;
 }
 
 .concept-grafo h3 {
@@ -65,6 +82,3 @@
     font-weight: bold; 
 }
 
-.tipos-grafo {
-    
-}
