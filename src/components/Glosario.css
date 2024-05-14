@@ -28,6 +28,7 @@
     padding: 5px 20px;
     background-color: #2E5EAA;
     border-radius: 10px;
+    animation: appear-left 0.7s ease-in-out;
 }
 
 .title-glosario h3 {
@@ -38,6 +39,7 @@
 
 .content-glosario {
     margin-right: auto;
+    animation: appear-right 0.7s ease-in-out;
 }
 
 .concept-grafo {
@@ -82,3 +84,47 @@
     font-weight: bold; 
 }
 
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 20%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+@keyframes appear-right {
+    from {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0); 
+    }
+}
+
+@keyframes appear-left {
+    from {
+        opacity: 0;
+        transform: translateX(200px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0); 
+    }
+}
+
+.concept-grafo {
+    view-timeline-name: --content;
+    view-timeline-axis: block;
+
+    animation-timeline: --content;
+    animation-name: appear-right;
+
+    animation-range: entry 25% cover 30%;
+    animation-fill-mode: both;
+}

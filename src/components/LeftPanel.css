@@ -45,6 +45,7 @@
     font-weight: bold; 
     font-size: 14px;
     color: #f0f0f0;
+    animation: appear-right 0.7s ease-in-out;
 }
 
 .edge-info {
@@ -56,4 +57,17 @@
     font-size: 14px;
     color: #f0f0f0;
     width: 50%;
+    animation: appear-right 0.7s ease-in-out;
 }
+
+@keyframes appear-right {
+    from {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0); 
+    }
+}
+

@@ -88,7 +88,7 @@ main {
     border-radius: 12px;
     margin: 0px 12px;
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
-    max-height: 80vh;; /* Altura máxima para el contenido */
+    max-height: 80vh; /* Altura máxima para el contenido */
 }
 
 .left-panel::-webkit-scrollbar, .right-panel::-webkit-scrollbar {
@@ -110,4 +110,47 @@ main {
     padding: 10px;
     border-radius: 12px; 
     border: 2px solid #2E5EAA;
+    animation: show 0.7s ease-in-out;
+}
+
+.left-panel {
+    animation: appear-left 0.7s ease-in-out;
+}
+
+.right-panel {
+    animation: appear-right 0.7s ease-in-out;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 20%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+@keyframes appear-right {
+    from {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0); 
+    }
+}
+
+@keyframes appear-left {
+    from {
+        opacity: 0;
+        transform: translateX(200px);
+    }
+    to {
+       opacity: 1;
+       transform: translateX(0); 
+    }
 }
