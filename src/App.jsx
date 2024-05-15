@@ -6,6 +6,8 @@ import { RightPanel } from './components/RightPanel';
 import { useState } from 'react';
 import { Grafo } from './model/Grafo';
 import { Glosario } from './components/Glosario';
+import { LeftTreePanel } from './components/LeftTreePanel';
+import { CenterTreePanel } from './components/CenterTreePanel';
 
 function App() {
   const [grafo, setGrafo] = useState(new Grafo())
@@ -48,7 +50,15 @@ function App() {
   const renderContentArbol = () => {
     return (
       <main>
-        <h3>Prueba de renderizado de contenido del árbol</h3>
+
+        <div className='left-tree-panel'>
+          <LeftTreePanel />
+        </div>
+
+        <div className='center-tree-panel'>
+          <CenterTreePanel />
+        </div>
+
       </main>
     )
   }
