@@ -79,7 +79,6 @@ export function CenterTreePanel ({ arbol, actualizarArbol }) {
             </div>
             <div className='button-area'>
                 <button onClick={resetBoard}>Limpiar tablero</button>
-                <button>Ingresar Arista</button>
             </div>
         </div>
     )

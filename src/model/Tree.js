@@ -41,8 +41,11 @@ export class Tree {
         const valores = [];
         
         function recorrer(nodo) {
-            valores.push(nodo.obtenerValor());
-            for (let hijo of nodo.obtenerHijos()) {
+            if (nodo === null) {
+                return;
+            }
+            valores.push(nodo.getValor());
+            for (let hijo of nodo.getHijos()) {
                 recorrer(hijo);
             }
         }

@@ -61,7 +61,7 @@ function App() {
       <main>
 
         <div className='left-tree-panel'>
-          <LeftTreePanel key={leftTreePanelKey} />
+          <LeftTreePanel key={leftTreePanelKey} arbol={tree} />
         </div>
 
         <div className='center-tree-panel'>
