@@ -8,6 +8,7 @@ import { Grafo } from './model/Grafo';
 import { Glosario } from './components/Glosario';
 import { LeftTreePanel } from './components/LeftTreePanel';
 import { CenterTreePanel } from './components/CenterTreePanel';
+import { Tree } from './model/Tree';
 
 function App() {
   const [grafo, setGrafo] = useState(new Grafo())
@@ -15,11 +16,19 @@ function App() {
   const [rightPanelKey, setRightPanelKey] = useState(0)
   const [mainContent, setMainContent] = useState('grafo')
 
+  const [tree, setTree] = useState(new Tree())
+  const [leftTreePanelKey, setLeftTreePanelKey] = useState(0)
+
   const actualizarGrafo = nuevoGrafo => {
     setGrafo(nuevoGrafo);
     //Lo uso para forzar el renderizado de la información de la izquierda y derecha
     setLeftPanelKey(prevKey => prevKey + 1)
     setRightPanelKey(prevKey => prevKey + 1)
+  }
+
+  const actualziarArbol = nuevoArbol => {
+    setTree(nuevoArbol)
+    setLeftTreePanelKey(prevKey => prevKey + 1)
   }
 
   //Actualiza el contenido del main dependiendo a el link al que se le da click
@@ -52,11 +61,11 @@ function App() {
       <main>
 
         <div className='left-tree-panel'>
-          <LeftTreePanel />
+          <LeftTreePanel key={leftTreePanelKey} />
         </div>
 
         <div className='center-tree-panel'>
-          <CenterTreePanel />
+          <CenterTreePanel arbol={tree} actualizarArbol={actualziarArbol}/>
         </div>
 
       </main>

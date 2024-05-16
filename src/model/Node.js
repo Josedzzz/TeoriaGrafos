@@ -20,4 +20,12 @@ export class Node {
     getHijos() {
         return this.hijos
     }
+
+    getPosicionI() {
+        return this.posicionI
+    }
+
+    getPosicionJ() {
+        return this.posicionJ
+    }
 }

@@ -1,21 +1,69 @@
 import './CenterTreePanel.css'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { Square } from './Square'
+import { SquareTree } from './SquareTree'
+import { Tree } from '../model/Tree'
 
 const BOARD_WIDTH = 142
 const BOARD_HEIGHT = 84
 const BOARD_ARRAY = Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH).fill(null))
 
-export function CenterTreePanel () {
+export function CenterTreePanel ({ arbol, actualizarArbol }) {
     const [board, setBoard] = useState(BOARD_ARRAY)
 
     //Funcion para resetear el tablero
     const resetBoard = () => {
         setBoard(Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH).fill(null)))
+        actualizarArbol(new Tree())
     }
 
-    const updateBoard = (i, j, nodeName) => {
-        
+    //Agrega un nodo al arbol
+    const updateBoard = (i, j) => {
+        if (arbol.getRaiz() === null) {
+            const valor = prompt('Ingrese el valor de la raiz:')
+            arbol.addRaiz(valor, i, j)
+            //Pintamos el nodo
+            const newBoard = [...board]
+            newBoard[i][j] = valor
+            newBoard[i-1][j-1] = '-'
+            newBoard[i-1][j] = '-'
+            newBoard[i-1][j+1] = '-'
+            newBoard[i][j-1] = '-'
+            newBoard[i][j+1] = '-'
+            newBoard[i+1][j-1] = '-'
+            newBoard[i+1][j] = '-'
+            newBoard[i+1][j+1] = '-'
+            setBoard(newBoard)
+            actualizarArbol(arbol)
+        } else {
+            const valor = prompt('Ingrese el valor del nodo:')
+            const padre = prompt('Ingrese el padre del nodo:')
+            if (!arbol.existeValor(valor) && arbol.existeValor(padre)) {
+                const nodePadre = arbol.getNode(padre)
+                const camino = arbol.encontrarCaminoEntreNodos(nodePadre, i, j)
+                arbol.addHijo(padre, valor, i, j)
+                //Pintamos el nodo
+                const newBoard = [...board]
+                newBoard[i][j] = valor
+                newBoard[i-1][j-1] = '-'
+                newBoard[i-1][j] = '-'
+                newBoard[i-1][j+1] = '-'
+                newBoard[i][j-1] = '-'
+                newBoard[i][j+1] = '-'
+                newBoard[i+1][j-1] = '-'
+                newBoard[i+1][j] = '-'
+                newBoard[i+1][j+1] = '-'
+                //Pintamos el camino
+                camino.forEach(({ i, j }) => {
+                    newBoard[i][j] = '*'
+                })
+                setBoard(newBoard)
+                actualizarArbol(arbol)
+            } else {
+                alert('Verifique que el valor del nodo no esté repetido o que el padre de este si exista')
+            }
+        }
+
     }
 
     return (
@@ -23,9 +71,9 @@ export function CenterTreePanel () {
             <div className='board'>
                 {Array.from({ length: BOARD_HEIGHT }, (_, i) => (
                     Array.from({ length: BOARD_WIDTH }, (_, j) => (
-                        <Square key={j} i={i} j={j} updateBoard={updateBoard}>
+                        <SquareTree key={j} i={i} j={j} updateBoard={updateBoard}>
                             {board[i][j]}
-                        </Square>
+                        </SquareTree>
                     ))
                 ))}
             </div>
@@ -35,4 +83,9 @@ export function CenterTreePanel () {
             </div>
         </div>
     )
+}
+
+CenterTreePanel.propTypes = {
+    arbol: PropTypes.object.isRequired, // grafo debe ser un objeto requerido
+    actualizarArbol: PropTypes.func.isRequired // setGrafo debe ser una función requerida
 }
