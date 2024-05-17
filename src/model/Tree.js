@@ -109,57 +109,93 @@ export class Tree {
 
     //Funcion para verificar si un nodo es la raiz del arbol
     isRaiz(valor) {
-        return this.raiz && this.raiz.getValor() === valor;
+        return this.raiz && this.raiz.getValor() === valor
     }
 
     // Funcion para verificar si un nodo es una rama
     isRama(valor) {
-        const nodo = this.getNode(valor);
-        return nodo !== null && nodo !== this.raiz && nodo.getHijos().length > 0;
+        const nodo = this.getNode(valor)
+        return nodo !== null && nodo !== this.raiz && nodo.getHijos().length > 0
     }
 
     // Funcion para verificar si un nodo es una hoja
     isHoja(valor) {
-        const nodo = this.getNode(valor);
-        return nodo !== null && nodo.getHijos().length === 0;
+        const nodo = this.getNode(valor)
+        return nodo !== null && nodo.getHijos().length === 0
     }
 
     // Funcion para obtener el padre de un nodo dado su valor
     getParent(valor, nodoActual = this.raiz, padre = null) {
         if (nodoActual === null) {
-            return null;
+            return null
         }
         if (nodoActual.getValor() === valor) {
-            return padre;
+            return padre
         }
         for (let hijo of nodoActual.getHijos()) {
-            const resultado = this.getParent(valor, hijo, nodoActual);
+            const resultado = this.getParent(valor, hijo, nodoActual)
             if (resultado) {
-                return resultado;
+                return resultado
             }
         }
-        return null;
+        return null
     }
 
     // Funcion para obtener los hijos de un nodo dado su valor
     getHijos(valor) {
         const nodo = this.getNode(valor);
         if (nodo === null) {
-            return null;
+            return null
         }
-        return nodo.getHijos();
+        return nodo.getHijos()
     }
 
-    // Nueva función para obtener los hermanos de un nodo dado su valor
+    // Funcion para obtener los hermanos de un nodo dado su valor
     getHermanos(valor) {
         const nodoActual = this.getNode(valor)
         if (!nodoActual) {
-            return null;
+            return null
         }
         const nodoPadre = this.getParent(valor)
         if (!nodoPadre) {
-            return null;
+            return null
         }
        return nodoPadre.getHijos().filter(hijo => hijo.getValor() !== valor)
+    }
+
+    // Funcion para obtener los descendientes de un nodo dado su valor
+    getDescendientes(valor) {
+        const nodo = this.getNode(valor)
+        if (nodo === null) {
+            return null
+        }
+        const descendientes = []
+        function recorrer(nodo) {
+            for (let hijo of nodo.getHijos()) {
+                descendientes.push(hijo)
+                recorrer(hijo)
+            }
+        }
+        recorrer(nodo)
+        return descendientes
+    }
+
+    // Funcion para obtener los ancestros de un nodo dado su valor
+    getAncestros(valor) {
+        const ancestros = [];
+        let nodoActual = this.getNode(valor)
+        if (!nodoActual) {
+            return null
+        }
+        while (nodoActual !== this.raiz) {
+            const nodoPadre = this.getParent(nodoActual.getValor())
+            if (nodoPadre) {
+                ancestros.push(nodoPadre)
+                nodoActual = nodoPadre
+            } else {
+                break
+            }
+        }
+        return ancestros
     }
 }

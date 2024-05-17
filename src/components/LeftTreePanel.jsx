@@ -67,6 +67,26 @@ export function LeftTreePanel ({ arbol }) {
         return `Hermanos del nodo: ${hermanosValores.join(", ")}`
     }
 
+    //Funcion para renderizar los descendientes de un nodo
+    const renderDescendientes = (valor) => {
+        const descendienteNodo = arbol.getDescendientes(valor)
+        if (descendienteNodo === null || descendienteNodo.length === 0) {
+            return 'El nodo no tiene descendientes'
+        }
+        const descendientesValores = descendienteNodo.map(descendiente => descendiente.getValor())
+        return `Descendientes del nodo: ${descendientesValores.join(", ")}`
+    }
+
+    //Funcion para renderizar los ancestros de un nodo
+    const renderAncestros = (valor) => {
+        const ancestrosNodo = arbol.getAncestros(valor)
+        if (ancestrosNodo === null || ancestrosNodo.length === 0) {
+            return 'El nodo no tiene ancestros'
+        }
+        const ancestrosValores = ancestrosNodo.map(ancestro => ancestro.getValor())
+        return `Ancestros del nodo: ${ancestrosValores.join(", ")}`
+    }
+
     return (
         <div className='left-content scroll-content'>
             <h3 className='title-nodes'>Nodos del árbol</h3>
@@ -85,6 +105,10 @@ export function LeftTreePanel ({ arbol }) {
                                 {renderHermanosNodo(nombre)}
                                 <br />
                                 {renderHijosNodo(nombre)}
+                                <br />
+                                {renderDescendientes(nombre)}
+                                <br />
+                                {renderAncestros(nombre)}
                             </div>
                         )}
                     </li>
