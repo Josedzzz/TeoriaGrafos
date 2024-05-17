@@ -87,6 +87,15 @@ export function LeftTreePanel ({ arbol }) {
         return `Ancestros del nodo: ${ancestrosValores.join(", ")}`
     }
 
+    //Funcion para renderizar el nivel de un nodo
+    const renderNivel = (valor) => {
+        const nivelNodo = arbol.getNivel(valor)
+        if (valor === null) {
+            return ''
+        }
+        return 'El nodo está en el nivel: ' + nivelNodo
+    }
+
     return (
         <div className='left-content scroll-content'>
             <h3 className='title-nodes'>Nodos del árbol</h3>
@@ -109,6 +118,8 @@ export function LeftTreePanel ({ arbol }) {
                                 {renderDescendientes(nombre)}
                                 <br />
                                 {renderAncestros(nombre)}
+                                <br />
+                                {renderNivel(nombre)}
                             </div>
                         )}
                     </li>

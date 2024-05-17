@@ -198,4 +198,20 @@ export class Tree {
         }
         return ancestros
     }
+
+    // Funcion para obtener el nivel de un nodo dado su valor
+    getNivel(valor) {
+        let nivel = 1
+        const nodoActual = this.getNode(valor)
+
+        if (!nodoActual) {
+            return null
+        }
+        let nodoPadre = this.getParent(valor)
+        while (nodoPadre !== null) {
+            nivel++
+            nodoPadre = this.getParent(nodoPadre.getValor());
+        }
+        return nivel
+    }
 }
