@@ -37,6 +37,36 @@ export function LeftTreePanel ({ arbol }) {
         }
     }
 
+    //Funcion para renderizar el padre de un nodo
+    const renderParentNodo = (valor) => {
+        const parentNode = arbol.getParent(valor)
+        if (parentNode === null) {
+            return 'El nodo no tiene un padre'
+        } else {
+            return 'El padre del nodo es: ' + parentNode.getValor()
+        }
+    }
+
+    //Funcion para renderizar los hijos de un nodo
+    const renderHijosNodo = (valor) => {
+        const hijosNodo = arbol.getHijos(valor)
+        if (hijosNodo === null || hijosNodo.length === 0) {
+            return 'El nodo no tiene hijos'
+        }
+        const hijosValores = hijosNodo.map(hijo => hijo.getValor())
+        return `Hijos del nodo: ${hijosValores.join(", ")}`
+    }
+
+    //Funcion para renderizar los hermanos de un nodo
+    const renderHermanosNodo = (valor) => {
+        const hermanosNodo = arbol.getHermanos(valor)
+        if (hermanosNodo === null || hermanosNodo.length === 0) {
+            return 'El nodo no tiene hermanos'
+        }
+        const hermanosValores = hermanosNodo.map(hermano => hermano.getValor())
+        return `Hermanos del nodo: ${hermanosValores.join(", ")}`
+    }
+
     return (
         <div className='left-content scroll-content'>
             <h3 className='title-nodes'>Nodos del árbol</h3>
@@ -48,7 +78,13 @@ export function LeftTreePanel ({ arbol }) {
                         </button>
                         {nodoSeleccionado === nombre && (
                             <div className="nodo-info">
-                                {renderTipoNodo(nodoSeleccionado)}
+                                {renderTipoNodo(nombre)}
+                                <br />
+                                {renderParentNodo(nombre)}
+                                <br />
+                                {renderHermanosNodo(nombre)}
+                                <br />
+                                {renderHijosNodo(nombre)}
                             </div>
                         )}
                     </li>

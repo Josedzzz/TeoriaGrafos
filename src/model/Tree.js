@@ -123,4 +123,43 @@ export class Tree {
         const nodo = this.getNode(valor);
         return nodo !== null && nodo.getHijos().length === 0;
     }
+
+    // Funcion para obtener el padre de un nodo dado su valor
+    getParent(valor, nodoActual = this.raiz, padre = null) {
+        if (nodoActual === null) {
+            return null;
+        }
+        if (nodoActual.getValor() === valor) {
+            return padre;
+        }
+        for (let hijo of nodoActual.getHijos()) {
+            const resultado = this.getParent(valor, hijo, nodoActual);
+            if (resultado) {
+                return resultado;
+            }
+        }
+        return null;
+    }
+
+    // Funcion para obtener los hijos de un nodo dado su valor
+    getHijos(valor) {
+        const nodo = this.getNode(valor);
+        if (nodo === null) {
+            return null;
+        }
+        return nodo.getHijos();
+    }
+
+    // Nueva función para obtener los hermanos de un nodo dado su valor
+    getHermanos(valor) {
+        const nodoActual = this.getNode(valor)
+        if (!nodoActual) {
+            return null;
+        }
+        const nodoPadre = this.getParent(valor)
+        if (!nodoPadre) {
+            return null;
+        }
+       return nodoPadre.getHijos().filter(hijo => hijo.getValor() !== valor)
+    }
 }
