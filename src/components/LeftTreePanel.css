@@ -1,3 +1,18 @@
-h3 {
-    color: #f0f0f0;
+.scroll-content {
+    overflow-y: auto; 
+    max-height: 80vh;
+}
+
+.scroll-content::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}   
+
+.scroll-content::-webkit-scrollbar-thumb {
+    background-color: #2E5EAA; /* Color del botón del scrollbar */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.scroll-content::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #f0f0f0; /* Color de fondo del scrollbar */
 }

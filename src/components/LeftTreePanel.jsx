@@ -20,6 +20,7 @@ export function LeftTreePanel ({ arbol }) {
         }
     } 
 
+    //Funcion para renderizar el tipo de nodo
     const renderTipoNodo = (valor) => {
         const isRaiz = arbol.isRaiz(valor)  
         const isRama = arbol.isRama(valor)
@@ -34,11 +35,10 @@ export function LeftTreePanel ({ arbol }) {
         } else {
             return ''
         }
-
     }
 
     return (
-        <div className='left-content'>
+        <div className='left-content scroll-content'>
             <h3 className='title-nodes'>Nodos del árbol</h3>
             <ul className='list'>
                 {valoresNodos.map((nombre) => (
