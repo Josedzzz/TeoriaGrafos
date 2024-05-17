@@ -106,4 +106,21 @@ export class Tree {
         
         return camino;
     }
+
+    //Funcion para verificar si un nodo es la raiz del arbol
+    isRaiz(valor) {
+        return this.raiz && this.raiz.getValor() === valor;
+    }
+
+    // Funcion para verificar si un nodo es una rama
+    isRama(valor) {
+        const nodo = this.getNode(valor);
+        return nodo !== null && nodo !== this.raiz && nodo.getHijos().length > 0;
+    }
+
+    // Funcion para verificar si un nodo es una hoja
+    isHoja(valor) {
+        const nodo = this.getNode(valor);
+        return nodo !== null && nodo.getHijos().length === 0;
+    }
 }
