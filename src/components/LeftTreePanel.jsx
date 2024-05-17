@@ -3,11 +3,12 @@ import './LeftTreePanel.css'
 import PropTypes from 'prop-types'
 
 export function LeftTreePanel ({ arbol }) {
-    //Obtiene los valores de los nodos del arbol
-    const valoresNodos = arbol.getListaValores()
-    
+    const [generalidadArbolVisible, setGeneralidadArbolVisible] = useState(null)
     //Estado para mantener un nodo seleccionado y mostrar su información
     const [nodoSeleccionado, setNodoSeleccionado] = useState(null)
+
+    //Obtiene los valores de los nodos del arbol
+    const valoresNodos = arbol.getListaValores()
 
     // Función para manejar el clic en un nodo
     const handleClick = (nombre) => {
@@ -19,6 +20,15 @@ export function LeftTreePanel ({ arbol }) {
             setNodoSeleccionado(nombre)
         }
     } 
+
+    //Muesta el contenido de generalidades del grafo
+    const handleGeneralidadClick = (contenido) => {
+        if (contenido === generalidadArbolVisible) {
+            setGeneralidadArbolVisible(null)
+        } else {
+            setGeneralidadArbolVisible(contenido)
+        }
+    }
 
     //Funcion para renderizar el tipo de nodo
     const renderTipoNodo = (valor) => {
@@ -98,6 +108,22 @@ export function LeftTreePanel ({ arbol }) {
 
     return (
         <div className='left-content scroll-content'>
+
+            <ul className='list-right'>
+
+                <li className='item-list-right'>
+                    <button className='button-list-right' onClick={() => handleGeneralidadClick('Generalidad arbol')}>
+                        Generalidades
+                    </button>
+                    {generalidadArbolVisible === 'Generalidad arbol' && (
+                        <div className='info-right'>
+                            <h3>Prueba de contenido</h3>
+                        </div>
+                    )}
+                </li>
+
+            </ul>
+
             <h3 className='title-nodes'>Nodos del árbol</h3>
             <ul className='list'>
                 {valoresNodos.map((nombre) => (
@@ -125,6 +151,7 @@ export function LeftTreePanel ({ arbol }) {
                     </li>
                 ))}
             </ul>
+
         </div>
     )
 }
