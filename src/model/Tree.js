@@ -214,4 +214,63 @@ export class Tree {
         }
         return nivel
     }
+
+    // Funcion para obtener la altura del arbol 
+    getAltura() {
+        return this.calcularAltura(this.raiz)
+    }
+
+    calcularAltura(nodo) {
+        if (nodo === null) {
+            return 0
+        } else {
+            // Calcular la altura de cada subárbol
+            let alturaMaxima = 0
+            for (let hijo of nodo.getHijos()) {
+                const alturaHijo = this.calcularAltura(hijo)
+                if (alturaHijo > alturaMaxima) {
+                    alturaMaxima = alturaHijo
+                }
+            }
+            // La altura del árbol es la altura del subarbol mas alto + 1 (por el nodo actual)
+            return alturaMaxima + 1
+        }
+    }
+
+    // Funcion para obtener el peso del arbol (cantidad total de nodos)
+    getPeso() {
+        return this.contarNodos(this.raiz)
+    }
+
+    contarNodos(nodo) {
+        if (nodo === null) {
+            return 0
+        } else {
+            let peso = 1
+            for (let hijo of nodo.getHijos()) {
+                peso += this.contarNodos(hijo)
+            }
+            return peso
+        }
+    }
+
+    // Funcion para obtener el orden del arbol 
+    getOrden() {
+        return this.calcularOrden(this.raiz)
+    }
+
+    calcularOrden(nodo) {
+        if (nodo === null) {
+            return 0
+        } else {
+            let ordenMaximo = nodo.getHijos().length
+            for (let hijo of nodo.getHijos()) {
+                const ordenHijo = this.calcularOrden(hijo)
+                if (ordenHijo > ordenMaximo) {
+                    ordenMaximo = ordenHijo
+                }
+            }
+            return ordenMaximo
+        }
+    }
 }

@@ -106,6 +106,24 @@ export function LeftTreePanel ({ arbol }) {
         return 'El nodo está en el nivel: ' + nivelNodo
     }
 
+    //Funcion para renderizar la altura del arbol
+    const renderAltura = () => {
+        const altura = arbol.getAltura()
+        return 'El árbol tiene una altura de: ' + altura
+    }
+
+    //Funcion para renderizar el peso del arbol
+    const renderPeso = () => {
+        const peso = arbol.getPeso()
+        return 'El árbol tiene un peso de: ' + peso
+    }
+
+    //Funcion para renderizar el orden del arbol
+    const renderOrden = () => {
+        const orden = arbol.getOrden()
+        return 'El árbol tiene un orden de: ' + orden
+    }
+
     return (
         <div className='left-content scroll-content'>
 
@@ -117,7 +135,11 @@ export function LeftTreePanel ({ arbol }) {
                     </button>
                     {generalidadArbolVisible === 'Generalidad arbol' && (
                         <div className='info-right'>
-                            <h3>Prueba de contenido</h3>
+                            {renderAltura()}
+                            <br />
+                            {renderPeso()}
+                            <br />
+                            {renderOrden()}
                         </div>
                     )}
                 </li>
