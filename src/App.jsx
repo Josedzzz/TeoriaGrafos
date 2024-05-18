@@ -9,6 +9,7 @@ import { Glosario } from './components/Glosario';
 import { LeftTreePanel } from './components/LeftTreePanel';
 import { CenterTreePanel } from './components/CenterTreePanel';
 import { Tree } from './model/Tree';
+import { Inicio } from './components/Inicio';
 
 function App() {
   const [grafo, setGrafo] = useState(new Grafo())
@@ -83,6 +84,7 @@ function App() {
         </div>
         <div className='links-top'>
           <ul className='links'>
+            <li><a onClick={() => handleContentClick('inicio')}>Inicio</a></li>
             <li><a onClick={() => handleContentClick('grafo')}>Construcción de grafos</a></li>
             <li><a onClick={() => handleContentClick('arbol')}>Construcción de árboles</a></li>
             <li><a onClick={() => handleContentClick('glosario')}>Glosario</a></li>
@@ -90,6 +92,7 @@ function App() {
         </div>
       </header>
 
+      {mainContent === 'inicio' && <Inicio />}
       {mainContent === 'grafo' && renderContentGrafo()}
       {mainContent === 'arbol' && renderContentArbol()}
       {mainContent === 'glosario' && <Glosario />}
