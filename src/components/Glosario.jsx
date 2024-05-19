@@ -70,6 +70,65 @@ export function Glosario () {
                     </ul>
                 </div>
 
+                <div className='concept-grafo'>
+                    <h3>¿Qué es un árbol?</h3>
+                    <p>
+                        Un árbol es un grafo conexo que no contiene un circuito simple. Es decir, un grafo es un árbol
+                        si y solo sí existe un único camino simple entre cualquiera de sus dos vertices. Cuando hablamos
+                        de un árbol, se tienen los siguientes terminos:
+                    </p>
+                    <ul>
+                        <li><span className='highlighted'>Altura: </span>
+                            Es la distancia máxima que existe desde la raíz hasta un nodo
+                        </li>                    
+                    </ul>
+                    <ul>
+                        <li><span className='highlighted'>Peso: </span>
+                            Es el número máximo de hijos que tiene uno de los nodos del árbol
+                        </li>                    
+                    </ul>
+                </div>
+
+                <div className='concept-grafo'>
+                    <h3>Árboles con raíz</h3>
+                    <p>
+                        Un árbol con raíz, es aquel en el cual un vertice ha sido designado como la raíz, y cada arista
+                        es dirigida desde la raíz. Un árbol con raíz contiene los siguientes terminos:
+                    </p>
+                    <ul>
+                        <li><span className='highlighted'>Raíz: </span>
+                            Es el nodo padre de todos los nodos del árbol, es decir, de este nodo se extienden el resto de 
+                            nodos del árbol
+                        </li>
+                        <li><span className='highlighted'>Rama: </span>
+                            Es un nodo que no es la raíz pero que tiene hijos
+                        </li>
+                        <li><span className='highlighted'>Hoja: </span>
+                            Es aquel nodo que no tiene hijos 
+                        </li>
+                        <li><span className='highlighted'>Padre: </span>
+                            Si V es un vertice en T, que no necesariamente es la raíz, el padre de V es el vertice único
+                            U tal que existe un arco directo, V es hijo de U
+                        </li>
+                        <li>
+                            <span className='highlighted'>Hermanos: </span>
+                            Nodos que tienen el mismo padre
+                        </li>
+                        <li>
+                            <span className='highlighted'>Ancestros: </span>
+                            Los ancestros de un nodo, son aquellos vertices que van desde la raiz hasta ese nodo
+                        </li>
+                        <li>
+                            <span className='highlighted'>Descendientes: </span>
+                            Los descendientes de un nodo, son aquellos vertices que van desde ese nodo en dirección
+                            contraria a la raíz
+                        </li>
+                        <li><span className='highlighted'>Nivel de un nodo: </span>
+                            Es la distancia desde la raíz, es decir, es el número de ancestros del nodo hasta la raíz
+                        </li>
+                    </ul>
+                </div>
+
             </div>
             
         </main>
