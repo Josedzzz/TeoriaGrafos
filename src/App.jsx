@@ -15,7 +15,7 @@ function App() {
   const [grafo, setGrafo] = useState(new Grafo())
   const [leftPanelKey, setLeftPanelKey] = useState(0)
   const [rightPanelKey, setRightPanelKey] = useState(0)
-  const [mainContent, setMainContent] = useState('grafo')
+  const [mainContent, setMainContent] = useState('inicio')
 
   const [tree, setTree] = useState(new Tree())
   const [leftTreePanelKey, setLeftTreePanelKey] = useState(0)
