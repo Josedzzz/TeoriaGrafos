@@ -1,6 +1,6 @@
 import './CenterTreePanel.css'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { SquareTree } from './SquareTree'
 import { Tree } from '../model/Tree'
 
@@ -10,6 +10,11 @@ const BOARD_ARRAY = Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH
 
 export function CenterTreePanel ({ arbol, actualizarArbol }) {
     const [board, setBoard] = useState(BOARD_ARRAY)
+
+    // Reinicia el tablero cada vez que el componente se monta
+    useEffect(() => {
+        resetBoard()
+    }, [])
 
     //Funcion para resetear el tablero
     const resetBoard = () => {

@@ -1,6 +1,6 @@
 import './CenterPanel.css'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Square } from './Square'
 import { Grafo } from '../model/Grafo'
 
@@ -10,6 +10,11 @@ const BOARD_ARRAY = Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH
 
 export function CenterPanel({ grafo, actualizarGrafo }) {
     const [board, setBoard] = useState(BOARD_ARRAY)
+
+    // Reinicia el tablero cada vez que el componente se monta
+    useEffect(() => {
+        resetBoard()
+    }, [])
 
     const resetBoard = () => {
         setBoard(Array.from({ length: BOARD_HEIGHT }, () => Array(BOARD_WIDTH).fill(null)))
