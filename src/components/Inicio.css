@@ -6,6 +6,22 @@
     width: 90%;
     max-width: 850px;
     margin: 0 auto;
+    overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
+    max-height: 80vh; /* Altura máxima para el contenido */
+}
+
+.box-inicio::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}   
+
+.box-inicio::-webkit-scrollbar-thumb {
+    background-color: #2E5EAA; /* Color del botón del scrollbar */
+    border-radius: 4px; /* Borde redondeado */
+}
+
+.box-inicio::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #f0f0f0; /* Color de fondo del scrollbar */
 }
 
 .title-inicio {

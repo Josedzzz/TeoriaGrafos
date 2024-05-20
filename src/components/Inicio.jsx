@@ -17,6 +17,13 @@ export function Inicio () {
                 </div>
 
                 <div className='concept-inicio'>
+                    <h3>Presentado por</h3>
+                    <p>Juan José Arce Aristizabal</p>
+                    <p>José David Amaya Restrepo</p>
+                    <p>Juan Miguel Florez Vasquez</p>
+                </div>
+
+                <div className='concept-inicio'>
                     <h3>¿Qué es PIG?</h3>
                     <p>
                         PIG es un programa desarrollado para la interpretación de grafos y árboles de manera amigable,

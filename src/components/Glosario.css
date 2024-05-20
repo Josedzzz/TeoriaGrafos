@@ -7,7 +7,7 @@
     max-width: 850px;
     margin: 0 auto;
     overflow-y: auto; /* Agrega una barra de desplazamiento vertical si es necesario */
-    max-height: 80vh;; /* Altura máxima para el contenido */
+    max-height: 80vh; /* Altura máxima para el contenido */
 }
 
 .box-glosario::-webkit-scrollbar {
