@@ -7,6 +7,7 @@ export function RightPanel ({ grafo }) {
     const [tipoGrafoVisible, setTipoGrafoVisible] = useState(null)
     const [cicloEulerianoVisible, setCicloEulerianoVisible] = useState(null)
     const [cicloHamiltonianoVisible, setCicloHamiltonianoVisible] = useState(null)
+    const [matrizIncidenciaVisible, setMatrizIncidenciaVisible] = useState(null)
 
     //Muesta el contenido de generalidades del grafo
     const handleGeneralidadClick = (contenido) => {
@@ -41,6 +42,15 @@ export function RightPanel ({ grafo }) {
             setCicloHamiltonianoVisible(null)
         } else {
             setCicloHamiltonianoVisible(contenido)
+        }
+    }
+
+    // Muestra el contenido de la matriz de incidencia
+    const handleMatrizIncidenciaClick = (contenido) => {
+        if (contenido === matrizIncidenciaVisible) {
+            setMatrizIncidenciaVisible(null)
+        } else {
+            setMatrizIncidenciaVisible(contenido)
         }
     }
 
@@ -113,6 +123,33 @@ export function RightPanel ({ grafo }) {
             <div>{nombresNodos}</div>
         );
     };
+
+    // Renderiza la matriz de incidencia
+    const renderMatrizIncidencia = () => {
+        const { matrizIncidencia, nombresNodos, nombresAristas } = grafo.calcularMatrizIncidencia()
+        return (
+            <table className='matriz-incidencia'>
+                <thead>
+                    <tr>
+                        <th></th>
+                        {nombresAristas.map((nombreArista, index) => (
+                            <th key={index}>{nombreArista}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {matrizIncidencia.map((fila, i) => (
+                        <tr key={i}>
+                            <td>{nombresNodos[i]}</td>
+                            {fila.map((valor, j) => (
+                                <td key={j}>{valor}</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )
+    }
     
  
     return (
@@ -170,6 +207,16 @@ export function RightPanel ({ grafo }) {
                     )}
                 </li>
                 
+                <li className='item-list-right'>
+                    <button className='button-list-right' onClick={() => handleMatrizIncidenciaClick('Matriz incidencia')}>
+                        Matriz de Incidencia
+                    </button>
+                    {matrizIncidenciaVisible === 'Matriz incidencia' && (
+                        <div className='info-right'>
+                            {renderMatrizIncidencia()}
+                        </div>
+                    )}
+                </li>
 
             </ul>
         </div>

@@ -308,4 +308,33 @@ export class Grafo {
         return nombresAristas;
     }
 
+    //Funcion para calcular la matriz de incidencia
+    calcularMatrizIncidencia() {
+        const nodosArray = Array.from(this.nodos)
+        const numNodos = nodosArray.length
+        const numAristas = this.aristas.length
+
+        // Crear una matriz de ceros
+        const matrizIncidencia = Array.from({ length: numNodos }, () => Array(numAristas).fill(0))
+
+        // Llenar la matriz de incidencia
+        this.aristas.forEach((arista, index) => {
+            const nodoInicioIndex = nodosArray.findIndex(nodo => nodo.equals(arista.nodoInicio))
+            const nodoFinIndex = nodosArray.findIndex(nodo => nodo.equals(arista.nodoFin))
+
+            if (nodoInicioIndex !== -1) {
+                matrizIncidencia[nodoInicioIndex][index] = 1
+            }
+
+            if (nodoFinIndex !== -1) {
+                matrizIncidencia[nodoFinIndex][index] = 1
+            }
+        });
+
+        const nombresNodos = nodosArray.map(nodo => nodo.nombre)
+        const nombresAristas = this.aristas.map(arista => `${arista.nodoInicio.nombre}-${arista.nodoFin.nombre}`)
+
+        return { matrizIncidencia, nombresNodos, nombresAristas }
+    }
+
 }
