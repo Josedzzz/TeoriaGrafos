@@ -337,4 +337,28 @@ export class Grafo {
         return { matrizIncidencia, nombresNodos, nombresAristas }
     }
 
+    //Funcion para obtener la matriz de adyacencia
+    calcularMatrizAdyacencia() {
+        const nodosArray = Array.from(this.nodos)
+        const numNodos = nodosArray.length
+
+        // Crear una matriz de ceros
+        const matrizAdyacencia = Array.from({ length: numNodos }, () => Array(numNodos).fill(0))
+
+        // Llenar la matriz de adyacencia
+        this.aristas.forEach(arista => {
+            const nodoInicioIndex = nodosArray.findIndex(nodo => nodo.equals(arista.nodoInicio))
+            const nodoFinIndex = nodosArray.findIndex(nodo => nodo.equals(arista.nodoFin))
+
+            if (nodoInicioIndex !== -1 && nodoFinIndex !== -1) {
+                matrizAdyacencia[nodoInicioIndex][nodoFinIndex]++
+                matrizAdyacencia[nodoFinIndex][nodoInicioIndex]++ // Para grafos no dirigidos
+            }
+        });
+
+        const nombresNodos = nodosArray.map(nodo => nodo.nombre)
+
+        return { matrizAdyacencia, nombresNodos }
+    }
+
 }

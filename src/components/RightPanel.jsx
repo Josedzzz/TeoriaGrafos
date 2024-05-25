@@ -8,6 +8,7 @@ export function RightPanel ({ grafo }) {
     const [cicloEulerianoVisible, setCicloEulerianoVisible] = useState(null)
     const [cicloHamiltonianoVisible, setCicloHamiltonianoVisible] = useState(null)
     const [matrizIncidenciaVisible, setMatrizIncidenciaVisible] = useState(null)
+    const [matrizAdyacenciaVisible, setMatrizAdyacenciaVisible] = useState(null)
 
     //Muesta el contenido de generalidades del grafo
     const handleGeneralidadClick = (contenido) => {
@@ -51,6 +52,15 @@ export function RightPanel ({ grafo }) {
             setMatrizIncidenciaVisible(null)
         } else {
             setMatrizIncidenciaVisible(contenido)
+        }
+    }
+
+    // Muestra el contenido de la matriz de adyacencia
+    const handleMatrizAdyacenciaClick = (contenido) => {
+        if (contenido === matrizAdyacenciaVisible) {
+            setMatrizAdyacenciaVisible(null)
+        } else {
+            setMatrizAdyacenciaVisible(contenido)
         }
     }
 
@@ -150,6 +160,33 @@ export function RightPanel ({ grafo }) {
             </table>
         )
     }
+
+    // Renderiza la matriz de adyacencia
+    const renderMatrizAdyacencia = () => {
+        const { matrizAdyacencia, nombresNodos } = grafo.calcularMatrizAdyacencia();
+        return (
+            <table className='matriz-adyacencia'>
+                <thead>
+                    <tr>
+                        <th></th>
+                        {nombresNodos.map((nombreNodo, index) => (
+                            <th key={index}>{nombreNodo}</th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {matrizAdyacencia.map((fila, i) => (
+                        <tr key={i}>
+                            <td>{nombresNodos[i]}</td>
+                            {fila.map((valor, j) => (
+                                <td key={j}>{valor}</td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        )
+    }
     
  
     return (
@@ -203,6 +240,17 @@ export function RightPanel ({ grafo }) {
                     {cicloHamiltonianoVisible === 'Ciclo hamiltoniano' && (
                         <div className='info-right'>
                             {renderCicloHamiltoniano()}
+                        </div>
+                    )}
+                </li>
+
+                <li className='item-list-right'>
+                    <button className='button-list-right' onClick={() => handleMatrizAdyacenciaClick('Matriz adyacencia')}>
+                        Matriz de Adyacencia
+                    </button>
+                    {matrizAdyacenciaVisible === 'Matriz adyacencia' && (
+                        <div className='info-right'>
+                            {renderMatrizAdyacencia()}
                         </div>
                     )}
                 </li>
